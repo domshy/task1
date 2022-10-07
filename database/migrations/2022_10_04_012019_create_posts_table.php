@@ -16,9 +16,9 @@ class CreatePostsTable extends Migration
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
             $table->string('fullname');
-            $table->mediumText('birth_place');
+            $table->string('birth_place');
             $table->string('gender');
-            $table->date('dob');
+            $table->string('dob');
             $table->mediumInteger('contact');
             $table->string('email')->unique();
             $table->mediumText('address');

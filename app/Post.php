@@ -11,7 +11,17 @@ class Post extends Model
     public $primaryKey = 'id';
     public $timestamps = true;
 
-    protected $fillable = ["fullname", "birth_place", "gender", "dob", "contact", "email", "address"];
+    protected $fillable = [
+        'fullname',
+        'birth_place',
+        'gender',
+        'dob',
+        'contact',
+        'email',
+        'address',
+        'user_id'
+
+    ];
 
     public function user()
     {
@@ -27,7 +37,8 @@ class Post extends Model
             'dob',
             'contact',
             'email',
-            'address'
+            'address',
+            'user_id'
         )->get()->toArray();
         return $records;
     }

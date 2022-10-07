@@ -33,3 +33,6 @@ Route::get('/download-pdf', 'PostsController@downloadPDF');
 
 Route::get('/export-excel', 'PostsController@exportToExcel');
 Route::get('/export-csv', 'PostsController@exportIntoCSV');
+
+Route::get('/import-form', 'PostsController@importForm');
+Route::post('/import', 'PostsController@import')->name('import');

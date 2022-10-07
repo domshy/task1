@@ -7,11 +7,21 @@
     <a href="/download-pdf" class="btn btn-success">Download as PDF</a>
     <a href="/export-csv" class="btn btn-danger">Download as CSV</a>
     <a href="/export-excel" class="btn btn-warning">Download as EXCEL</a>
-    <form method="POST" action="" enctype="multipart/form-data">
-        <label for="file">Choose File</label>
-        <input type="file" name="file" class="form-control"/>
-        <input type="submit" class="btn btn-priamry"/>
-    </form>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <form method="POST" action="{{ route('import') }}" enctype="multipart/form-data">
+                    @csrf
+                    <div class="form-group">
+                        <label for="file">Choose File</label>
+                        <input type="file" name="file" class="form-control" />
+                    </div>
+                    <input type="submit" class="btn btn-priamry" />
+                </form>
+            </div>
+        </div>
+    </div>
+
     <hr />
     @if (count($posts) > 0)
         @foreach ($posts as $post)

@@ -88,10 +88,6 @@
 
                         <div class="info-box-content">
                             <a href='/posts'><span class="info-box-text">Students</span></a>
-{{-- 
-                            @foreach ($posts as $post)
-                                <span class="info-box-number"{{ $post->posts()->count() }}></span>
-                            @endforeach --}}
                         </div>
 
                     </div>

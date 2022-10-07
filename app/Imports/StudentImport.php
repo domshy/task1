@@ -2,7 +2,9 @@
 
 namespace App\Imports;
 
-use App\Student;
+use App\Post;
+use App\User;
+use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 
@@ -15,14 +17,24 @@ class StudentImport implements ToModel, WithHeadingRow
      */
     public function model(array $row)
     {
-        return new Student([
-            "fullname" => $row["fullname"],
-            "birth_place" => $row["birth_place"],
-            "gender" => $row["gender"],
-            "dob" => $row["dob"],
-            "contact" => $row["contact"],
-            "email" => $row["email"],
-            "address" => $row["address"],
-        ]);
+        // $user = auth()->user();  
+        // $user = Auth::user()->id;
+        return
+            new Post([
+                'fullname' => $row['fullname'],
+                'birth_place' => $row['birth_place'],
+                'gender' => $row['gender'],
+                'dob' => $row['dob'],
+                'contact' => $row['contact'],
+                'email' => $row['email'],
+                'address' => $row['address'],
+                'user_id' => Auth::user()->id,
+            ]);
+    }
+    function rules(): array
+    {
+        return [
+            '*.email' => ['email', 'unique:students,email'],
+        ];
     }
 }

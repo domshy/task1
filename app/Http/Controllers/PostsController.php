@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Post;
 use PDF;
 use App\Exports\StudentExport;
+use App\Imports\StudentImport;
 use Excel;
 
 
@@ -167,8 +168,16 @@ class PostsController extends Controller
     {
         return Excel::download(new StudentExport, 'students.csv');
     }
-    
-    public function importForm(){
-        return view('import-form');
+
+    public function importForm()
+    {
+        return view('import-form')->with('posts');
+    }
+
+    public function import(Request $request)
+    {
+        Excel::import(new StudentImport, $request->file);
+        $post = Post::all();
+        return view('posts.index')->with('posts', $post);
     }
 }
