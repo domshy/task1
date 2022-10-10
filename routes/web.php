@@ -23,16 +23,20 @@ Route::get('/', 'PagesController@index');
 // Route::get('posts/{id}', 'PostsController@create');
 // Route::get('posts/{id}', 'PostsController@store');
 
-Route::resource('posts', 'PostsController');
-
+Route::resource('students', 'StudentController');
 
 Auth::routes();
 
+
+
 Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
-Route::get('/download-pdf', 'PostsController@downloadPDF');
+Route::get('/download-pdf', 'StudentController@downloadPDF');
 
-Route::get('/export-excel', 'PostsController@exportToExcel');
-Route::get('/export-csv', 'PostsController@exportIntoCSV');
+Route::get('/export-excel', 'StudentController@exportToExcel');
+Route::get('/export-csv', 'StudentController@exportIntoCSV');
 
-Route::get('/import-form', 'PostsController@importForm');
-Route::post('/import', 'PostsController@import')->name('import');
+Route::get('/import-form', 'StudentController@importForm');
+Route::post('/import', 'StudentController@import')->name('import');
+
+//charts
+Route::get('/charts', 'StudentChartsController@index');

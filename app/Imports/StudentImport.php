@@ -3,6 +3,7 @@
 namespace App\Imports;
 
 use App\Post;
+use App\Student;
 use App\User;
 use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Concerns\ToModel;
@@ -17,10 +18,9 @@ class StudentImport implements ToModel, WithHeadingRow
      */
     public function model(array $row)
     {
-        // $user = auth()->user();  
-        // $user = Auth::user()->id;
         return
-            new Post([
+            new Student([
+                'role' => $row['role'],
                 'fullname' => $row['fullname'],
                 'birth_place' => $row['birth_place'],
                 'gender' => $row['gender'],

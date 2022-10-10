@@ -2,7 +2,7 @@
 
 namespace App\Exports;
 
-use App\Post;
+use App\Student;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 
@@ -18,7 +18,8 @@ class StudentExport implements FromCollection, WithHeadings
             'dob',
             'contact',
             'email',
-            'address'
+            'address',
+            'role'
         ];
     }
 
@@ -27,15 +28,15 @@ class StudentExport implements FromCollection, WithHeadings
      */
     public function collection()
     {
-        // GET THE DATA THAT WILL RETURN IN EXCEL
-        return Post::all(
+        return Student::all(
             'fullname',
             'birth_place',
             'gender',
             'dob',
             'contact',
             'email',
-            'address'
+            'address',
+            'role'
         );
     }
 }

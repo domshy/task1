@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use App\Student;
 
 use Illuminate\Http\Request;
 
@@ -25,13 +26,20 @@ class DashboardController extends Controller
      */
     public function index()
     {
+        $data = array();
         $user_id = auth()->user()->id;
         $user = User::find($user_id);
-        return view('dashboard')->with('posts', $user->posts);
+        $total = Student::all()->count();
+
+        $data = [
+            'students' => $user->students,
+            'total' => $total
+        ];
+        // dd($total);
+        return view('dashboard', $data);
     }
 
     public function show()
     {
-        
     }
 }

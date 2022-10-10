@@ -65,14 +65,14 @@
             </tr>
         </thead>
         <tbody>
-            @foreach ($posts as $post)
+            @foreach ($students as $student)
                 <tr>
-                    <td>{{ $post->fullname }}</td>
-                    <td>{{ $post->gender }}</td>
-                    <td>{{ $post->dob }}</td>
-                    <td>{{ $post->address }}</td>
-                    <td>{{ $post->contact }}</td>
-                    <td>{{ $post->email }}</td>
+                    <td>{{ $student->fullname }}</td>
+                    <td>{{ $student->gender }}</td>
+                    <td>{{ $student->dob }}</td>
+                    <td>{{ $student->address }}</td>
+                    <td>{{ $student->contact }}</td>
+                    <td>{{ $student->email }}</td>
                 </tr>
             @endforeach
         </tbody>
