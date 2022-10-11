@@ -87,7 +87,7 @@
                                                 value="{{ old('name') }}" required autofocus placeholder="Full Name">
 
                                             @error('name')
-                                                <span class="invalid-feedback" role="alert">
+                                                <span class="invalid-feedback" role="alert" style="color: red;">
                                                     <strong>{{ $message }}</strong>
                                                 </span>
                                             @enderror
@@ -100,13 +100,13 @@
 
                                         <div class="col-md-6">
                                             <select style="height: 5vh;width: 100%;" class="form-select"
-                                                aria-label=".form-select-sm example">
+                                                aria-label=".form-select-sm example" id="gender" name="gender">
                                                 <option selected disabled>Choose...</option>
                                                 <option value="Male">Male</option>
                                                 <option value="Female">Female</option>
                                             </select>
                                             @error('gender')
-                                                <span class="invalid-feedback" role="alert">
+                                                <span class="invalid-feedback" role="alert" style="color: red;">
                                                     <strong>{{ $message }}</strong>
                                                 </span>
                                             @enderror
@@ -123,7 +123,7 @@
                                                 value="{{ old('dob') }}" required autofocus>
 
                                             @error('dob')
-                                                <span class="invalid-feedback" role="alert">
+                                                <span class="invalid-feedback" role="alert" style="color: red;">
                                                     <strong>{{ $message }}</strong>
                                                 </span>
                                             @enderror
@@ -132,7 +132,7 @@
 
                                     <div class="form-group row">
                                         <label for="email"
-                                            class="col-md-4 col-form-label text-md-right">{{ __('EMail Address') }}</label>
+                                            class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
 
                                         <div class="col-md-6">
                                             <input id="email" type="email"
@@ -140,7 +140,7 @@
                                                 value="{{ old('email') }}" required placeholder="Email">
 
                                             @error('email')
-                                                <span class="invalid-feedback" role="alert">
+                                                <span class="invalid-feedback" role="alert" style="color: red;">
                                                     <strong>{{ $message }}</strong>
                                                 </span>
                                             @enderror
@@ -157,7 +157,7 @@
                                                 name="password" required placeholder="Password">
 
                                             @error('password')
-                                                <span class="invalid-feedback" role="alert">
+                                                <span class="invalid-feedback" role="alert" style="color: red;">
                                                     <strong>{{ $message }}</strong>
                                                 </span>
                                             @enderror
@@ -177,7 +177,7 @@
                                     <div class="form-group row mb-0">
                                         <div class="col-md-6 offset-md-4">
                                             <button type="submit" class="btn btn-primary">
-                                                {{ __('Register') }}
+                                                {{ __('Sign Up') }}
                                             </button>
                                         </div>
                                     </div>

@@ -6,8 +6,10 @@ use Illuminate\Http\Request;
 use App\Student;
 use PDF;
 use App\Exports\StudentExport;
+use App\Helpers\Helper;
 use App\Imports\StudentImport;
 use Excel;
+use Illuminate\Support\Facades\Hash;
 
 class StudentController extends Controller
 {
@@ -37,14 +39,17 @@ class StudentController extends Controller
     {
         $this->validate($request, [
             'role' => 'student',
-            'fullname' => 'required|string|min:3',
-            'birth_place' => 'required|string',
+            'fullname' => ['required', 'string', 'min:3', 'max:255'],
+            'birth_place' => ['required', 'string'],
             'gender' => 'required',
             'dob' => 'date_format:Y-m-d|before:today|nullable',
-            'contact' => 'required|regex:/^(09)\\d{9}$/',
-            'email' => 'required|regex:/(.+)@(.+)\.(.+)/i',
-            'address' => 'required'
+            'contact' => 'required|integer',
+            'email' => ['required', 'regex:/.+@(gmail|yahoo)\.com$/', 'unique:users'],
+            // 'password' => ['required', 'min:8', 'confirmed'],
+            'address' => ['required', 'max:255', 'min:10']
         ]);
+
+        $student_no = Helper::IDGenerator(new Student,  'student_no', 7, 'STDNT');
 
         $student = new Student;
         $student->role = "student";
@@ -54,8 +59,10 @@ class StudentController extends Controller
         $student->dob = $request->input('dob');
         $student->contact = $request->input('contact');
         $student->email = $request->input('email');
+        // $student->password = Hash::make($request['password']);
         $student->address = $request->input('address');
         $student->user_id = auth()->user()->id;
+        $student->student_no = $student_no;
         $student->save();
 
         return redirect('/students')->with('success', 'User Added');
@@ -95,13 +102,14 @@ class StudentController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'fullname' => 'required|string|min:3',
-            'birth_place' => 'required|string',
-            'gender' => 'required',
-            'dob' => 'date_format:Y-m-d|before:today|nullable',
-            'contact' => 'required|regex:/^(09)\\d{9}$/',
-            'email' => 'required|regex:/(.+)@(.+)\.(.+)/i',
-            'address' => 'required'
+            'fullname' => ['required', 'string', 'min:3', 'max:255'],
+            'birth_place' => ['required', 'string'],
+            'gender' => ['required'],
+            'dob' => ['date_format:Y-m-d', 'before:today', 'nullable'],
+            'contact' => ['required', 'regex:/^(09)\\d{9}$/'],
+            'email' => ['required', 'regex:/(.+)@(.+)\.(.+)/i'],
+            // 'password' => ['required', 'min:8', 'confirmed'],
+            'address' => ['required', 'max:255']
         ]);
 
         $student = Student::find($id);
@@ -112,6 +120,7 @@ class StudentController extends Controller
         $student->dob = $request->input('dob');
         $student->contact = $request->input('contact');
         $student->email = $request->input('email');
+        // $student->password = Hash::make($request['password']);
         $student->address = $request->input('address');
         $student->save();
 

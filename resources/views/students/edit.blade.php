@@ -1,6 +1,7 @@
 @extends('layout.app')
 
 @section('content')
+    <a href="/students" class="btn btn-default">Go Back</a>
     <h1>Edit Detail</h1>
     {!! Form::open(['action' => ['StudentController@update', $student->id], 'method' => 'POST']) !!}
     <div class="form-group">
